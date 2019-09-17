@@ -1,15 +1,19 @@
-output "public_key_pem" {
-  value = "${data.terraform_remote_state.vpc.public_key_pem}"
+output "url" {
+  value = "http://${aws_elb.webserver_example.dns_name}:${var.elb_port}"
 }
 
-output "private_key_filename" {
-  value = "${data.terraform_remote_state.vpc.private_key_filename}"
+output "elb_dns_name" {
+  value = aws_elb.webserver_example.dns_name
 }
 
-output "private_key_pem" {
-  value = "${data.terraform_remote_state.vpc.private_key_pem}"
+output "asg_name" {
+  value = aws_autoscaling_group.webserver_example.name
 }
 
-output "my_bastion_public_ips" {
-  value = "${data.terraform_remote_state.vpc.bastion_ips_public}"
+output "asg_security_group_id" {
+  value = aws_security_group.asg.id
+}
+
+output "elb_security_group_id" {
+  value = aws_security_group.elb.id
 }
